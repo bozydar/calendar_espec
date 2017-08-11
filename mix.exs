@@ -6,7 +6,7 @@ defmodule Calendar.ESpec.Mixfile do
       app: :calendar_espec,
       name: "Calendar ESpec",
       version: "0.1.0",
-      elixir: "~> 1.5",
+      elixir: ">= 1.3.4",
       package: package(),
       deps: deps(),
       source_url: "https://github.com/bozydar/calendar_espec",
