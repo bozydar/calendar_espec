@@ -1,0 +1,13 @@
+/_build
+/cover
+/deps
+/doc
+/tmp
+erl_crash.dump
+*.ez
+.idea
+.vscode
+results.html
+results.json
+results.txt
+results-no-diff.txt
