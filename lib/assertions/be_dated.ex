@@ -5,8 +5,9 @@ defmodule Calendar.ESpec.Assertions.BeDated do
   it do: expect(~D[2017-01-01]).to be_dated :after, ~D[2016-12-31]
   """
   use ESpec.Assertions.Interface
+  require Calendar.ESpec.Assertions.Comparision, as: Comparision
 
-  Calendar.ESpec.Assertions.Comparision.match(Date)
+  Comparision.match(Date)
 
   defp success_message(subject, [op, val], _result, positive) do
     "`#{inspect subject} is #{op} #{inspect val}` is #{positive}."

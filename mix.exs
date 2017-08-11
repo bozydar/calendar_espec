@@ -1,9 +1,9 @@
-defmodule Calendar.ESpec do
+defmodule Calendar.ESpec.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :espec_calendar,
+      app: :calendar_espec,
       name: "Calendar ESpec",
       version: "0.1.0",
       elixir: "~> 1.5",

@@ -1,7 +1,8 @@
-defmodule Calendar.ESpec.BeDatedSpec do
+defmodule Calendar.ESpec.Assertions.BeDatedSpec do
   use ESpec, async: true
+  use Calendar.ESpec   # , operators: false # by default this option is enabled
 
-  describe "Calendar.ESpec.BeDatedSpec" do
+  describe "Calendar.ESpec.Assertions.BeDatedSpec" do
     context "Success" do
       it "checks success with `to`" do
         message = expect(~D[2017-01-01]).to be_dated :before, ~D[2017-01-02]
@@ -28,7 +29,13 @@ defmodule Calendar.ESpec.BeDatedSpec do
             message: "Expected `~D[2017-01-02] is after ~D[2017-01-03]` to be `true` but got `false`."}
         end
 
-        it_behaves_like(CheckErrorSharedSpec)
+        it "checks error" do
+          try do
+            shared[:expectation].()
+          rescue
+            error in [ESpec.AssertionError] -> expect(error.message) |> to(eq shared[:message])
+          end
+        end
       end
 
       context "with `not_to`" do
