@@ -1,7 +1,7 @@
 defmodule Calendar.ESpec.Assertions.Comparision do
   defmacro match(module) do
     quote do
-      defp match(subject, [op, val]) do
+      defp match(%unquote(module){} = subject, [op, val]) do
         result = case unquote(module).compare(subject, val) do
           :gt -> op in [:after, :after_or_at, :not_at]
           :lt -> op in [:before, :before_or_at, :not_at]

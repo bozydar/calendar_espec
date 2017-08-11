@@ -2,8 +2,8 @@ defmodule Calendar.ESpec.Assertions do
 
   alias Calendar.ESpec.Assertions
 
-  def be_dated(operator, value) when operator in [:before, :after, :before_or_at, :after_or_at, :at, :not_at] do
-    {Assertions.BeDated, [operator, value]}
+  def be_timed(operator, value) do
+    {Assertions.BeTimed, [operator, value]}
   end
 
 end
