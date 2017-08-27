@@ -25,6 +25,9 @@ defmodule Calendar.ESpec.Assertions.BeTimedSpec do
     it "checks a date`" do
       expect(~D[2017-01-01]).to be_timed :before, ~D[2017-01-02]        
     end
+    it "checks a date close to`" do
+      expect(~D[2017-01-01]).to be_timed_close_to, ~D[2017-01-02], [weeks: 1, days: 1]        
+    end
   end
 end
 ```
