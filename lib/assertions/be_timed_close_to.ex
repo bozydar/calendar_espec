@@ -72,7 +72,7 @@ defmodule Calendar.ESpec.Assertions.BeTimedCloseTo do
 
   Enum.each([Time, DateTime, NaiveDateTime], fn (module) ->
     defp match(%unquote(module){} = subject, [val, delta]) do
-      microseconds = unquote(module).diff(subject, val, :microseconds)
+      microseconds = Calendar.ESpec.Assertions.Comparision.unquote(module).diff(subject, val, :microseconds)
       diff = Duration.new(microseconds: microseconds)
 
       delta_micro =
@@ -86,7 +86,7 @@ defmodule Calendar.ESpec.Assertions.BeTimedCloseTo do
   end)
 
   defp match(%Date{} = subject, [val, delta]) do
-    diff = Duration.new(days: Date.diff(subject, val))
+    diff = Duration.new(days: Calendar.ESpec.Assertions.Comparision.diff(subject, val))
 
     delta_micro =
       delta
