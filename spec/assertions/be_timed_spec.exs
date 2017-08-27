@@ -6,12 +6,12 @@ defmodule Calendar.ESpec.Assertions.BeTimedSpec do
     context "Success" do
       it "checks success with `to`" do
         message = expect(~D[2017-01-01]).to be_timed :before, ~D[2017-01-02]
-        expect(message) |> to(eq "`~D[2017-01-01] is before ~D[2017-01-02]` is true.")
+        expect(message) |> to(eq "`~D[2017-01-01]` is before `~D[2017-01-02]`.")
       end
 
       it "checks success with `not_to`" do
         message = expect(~D[2017-01-02]).to_not be_timed :after, ~D[2017-01-03]
-        expect(message) |> to(eq "`~D[2017-01-02] is after ~D[2017-01-03]` is false.")
+        expect(message) |> to(eq "`~D[2017-01-02]` is not after `~D[2017-01-03]`.")
       end
 
       it do: expect(~D[2017-01-02]).to be_timed :after, ~D[2017-01-01]
@@ -22,38 +22,15 @@ defmodule Calendar.ESpec.Assertions.BeTimedSpec do
     end
 
     context "Errors" do
-      context "with `to`" do
-        before do
-          {:shared,
-            expectation: fn -> expect(~D[2017-01-02]).to be_timed :after, ~D[2017-01-03] end,
-            message: "Expected `~D[2017-01-02] is after ~D[2017-01-03]` to be `true` but got `false`."}
-        end
-
-        it "checks error" do
-          try do
-            shared[:expectation].()
-          rescue
-            error in [ESpec.AssertionError] -> expect(error.message) |> to(eq shared[:message])
-          end
+      it "checks error message" do
+        try do
+          expect(~D[2017-01-03]).to be_timed :after, ~D[2017-01-03]
+        rescue
+          error in [ESpec.AssertionError] ->
+            expect(error.message)
+            |> to(eq "Expected `~D[2017-01-03]` to be after `~D[2017-01-03]`, but it isn't.")
         end
       end
-
-      context "with `not_to`" do
-        before do
-          {:shared,
-            expectation: fn -> expect(~D[2017-01-03]).to_not be_timed :before, ~D[2017-01-02] end,
-            message: "Expected `~D[2017-01-03] is before ~D[2017-01-02]` to be `false` but got `true`."}
-        end
-
-        it "checks error" do
-          try do
-            shared[:expectation].()
-          rescue
-            error in [ESpec.AssertionError] -> expect(error.message) |> to(eq shared[:message])
-          end
-        end
-      end
-
     end
   end
 end

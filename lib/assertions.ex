@@ -8,4 +8,7 @@ defmodule Calendar.ESpec.Assertions do
   def be_timed_between(operator, value) do
     {Assertions.BeTimedBetween, [operator, value]}
   end
+  def be_timed_close_to(operator, value) do
+    {Assertions.BeTimedCloseTo, [operator, value]}
+  end
 end

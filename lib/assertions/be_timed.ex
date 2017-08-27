@@ -18,11 +18,13 @@ defmodule Calendar.ESpec.Assertions.BeTimed do
   end
 
   defp success_message(subject, [op, val], _result, positive) do
-    "`#{inspect subject} is #{op} #{inspect val}` is #{positive}."
+    to = if positive, do: "is", else: "is not"
+    "`#{inspect subject}` #{to} #{op} `#{inspect val}`."
   end  
 
-  defp error_message(subject, [op, val], _result, positive) do
-    "Expected `#{inspect subject} is #{op} #{inspect val}` to be `#{positive}` but got `#{!positive}`."
+  defp error_message(subject, [op, val], result, positive) do
+    to = if positive, do: "to", else: "not to"
+    but = if result, do: "it is", else: "it isn't"
+    "Expected `#{inspect subject}` #{to} be #{op} `#{inspect val}`, but #{but}."
   end
-
 end
