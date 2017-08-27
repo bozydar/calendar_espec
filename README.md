@@ -1,5 +1,5 @@
 # Calendar.ESpec
-[![Build Status](https://travis-ci.org/bozydar/calendar_espec.svg?branch=master)](https://travis-ci.org/antonmi/espec)
+[![Build Status](https://travis-ci.org/bozydar/calendar_espec.svg?branch=master)](https://travis-ci.org/bozydar/calendar_espec)
 
 ## Installation
 
