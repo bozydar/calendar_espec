@@ -5,8 +5,8 @@ defmodule Calendar.ESpec.Mixfile do
     [
       app: :calendar_espec,
       name: "Calendar ESpec",
-      version: "0.1.0",
-      elixir: ">= 1.4.0",
+      version: "0.1.1",
+      elixir: ">= 1.5.0",
       package: package(),
       description: description(),
       deps: deps(),
